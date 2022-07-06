@@ -1,16 +1,18 @@
+import { environment } from './../../environments/environment.prod';
+import { UserLogin } from './../model/UserLogin';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
 import { User } from '../model/User';
-import { UserLogin } from '../model/UserLogin';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   entrar(userLogin: UserLogin): Observable<UserLogin>{
     return this.http.post<UserLogin>('https://blogpessoalrenan.herokuapp.com/usuarios/logar', userLogin)
@@ -23,12 +25,11 @@ export class AuthService {
   logado(){
     let ok: boolean = false
 
-    if(environment.token != ''){
+    if (environment.token != ''){
       ok = true
     }
 
     return ok
   }
-
-
+  
 }
