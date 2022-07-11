@@ -3,8 +3,6 @@ import { environment } from './../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Tema } from '../model/Tema';
-import { UserLogin } from '../model/UserLogin';
-import { User } from '../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +41,10 @@ export class TemaService {
 
   getByIdTema(id: number): Observable<Tema>{
     return this.http.get<Tema>(`http://localhost:8080/temas/${id}`, this.token)
+  }
+
+  getByDescricaoTema(descricao: string): Observable<Tema[]>{
+    return this.http.get<Tema[]>(`http://localhost:8080/temas/descricao/${descricao}`, this.token)
   }
 
   postTema(tema: Tema): Observable<Tema>{
