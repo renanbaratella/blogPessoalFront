@@ -1,3 +1,4 @@
+import { AuthService } from './../service/auth.service';
 import { Router } from '@angular/router';
 import { environment } from './../../environments/environment.prod';
 import { Component, OnInit } from '@angular/core';
@@ -14,21 +15,12 @@ export class MenuComponent implements OnInit {
   id = environment.id
 
   constructor(
-    private router: Router
+    private router: Router,
+    public auth: AuthService
   ) { }
 
-  ngOnInit() {
-    window.scroll(0,0)
-    this.validarFoto()
+  ngOnInit(){
   }
-
-
-  validarFoto() {
-    if (environment.foto == null) {
-      this.foto = 'https://i.imgur.com/oDdADCG.jpg'
-    }
-  }
-
 
   sair(){
     this.router.navigate(['/entrar'])
