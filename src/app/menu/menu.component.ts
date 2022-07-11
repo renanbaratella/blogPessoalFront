@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
+  id = environment.id
 
   constructor(
     private router: Router
@@ -19,7 +20,6 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     window.scroll(0,0)
     this.validarFoto()
-    console.log(this.foto)
   }
 
 
