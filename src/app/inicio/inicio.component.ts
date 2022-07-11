@@ -34,7 +34,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit() {
 
-    if (environment.token == '') {
+    if(environment.token == ''){
       this.router.navigate(['/entrar'])
     }
 
@@ -42,31 +42,31 @@ export class InicioComponent implements OnInit {
     this.getAllPostagens()
   }
 
-  getAllTemas() {
+  getAllTemas(){
     this.temaService.getAllTema().subscribe((resp: Tema[]) => {
       this.listaTemas = resp
     })
   }
 
-  findByIdTema() {
-    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) => {
+  findByIdTema(){
+    this.temaService.getByIdTema(this.idTema).subscribe((resp: Tema) =>{
       this.tema = resp
     })
   }
 
-  getAllPostagens() {
+  getAllPostagens(){
     this.postagemService.getAllPostagens().subscribe((resp: Postagem[]) => {
       this.listaPostagens = resp
     })
   }
 
-  findByIdUser() {
+  findByIdUser(){
     this.authService.getByIdUser(this.idUser).subscribe((resp: User) => {
       this.user = resp
     })
   }
 
-  publicar() {
+  publicar(){
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
@@ -78,10 +78,6 @@ export class InicioComponent implements OnInit {
       alert('Postagem realizada com sucesso!')
       this.postagem = new Postagem()
       this.getAllPostagens()
-    }, erro => {
-      if(this.postagem.titulo.length <= 5){
-        alert('O Titulo deve ter no mínimo 5 caracteres!!')
-      }
     })
   }
 
