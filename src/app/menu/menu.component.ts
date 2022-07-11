@@ -11,14 +11,24 @@ export class MenuComponent implements OnInit {
 
   nome = environment.nome
   foto = environment.foto
-  fotoValidar = false
 
   constructor(
     private router: Router
   ) { }
 
-  ngOnInit(){
+  ngOnInit() {
+    window.scroll(0,0)
+    this.validarFoto()
+    console.log(this.foto)
   }
+
+
+  validarFoto() {
+    if (environment.foto == null) {
+      this.foto = 'https://i.imgur.com/oDdADCG.jpg'
+    }
+  }
+
 
   sair(){
     this.router.navigate(['/entrar'])
