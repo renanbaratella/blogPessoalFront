@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +20,7 @@ import { PostagemEditComponent } from './edit/postagem-edit/postagem-edit.compon
 import { PostagemDeleteComponent } from './delete/postagem-delete/postagem-delete.component';
 import { UserEditComponent } from './edit/user-edit/user-edit.component';
 import { AlertasComponent } from './alertas/alertas.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
 
 
 
@@ -51,6 +52,11 @@ import { AlertasComponent } from './alertas/alertas.component';
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })
